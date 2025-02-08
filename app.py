@@ -4,11 +4,16 @@ from wtforms import StringField, PasswordField, EmailField
 from wtforms.validators import DataRequired, Length
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import login_user, LoginManager, login_required, current_user, logout_user
+import os
+
 
 db = SQLAlchemy()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "Video call by yadav jiii"
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///video-meeting.db"
+
+
+app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join('/tmp', 'video-meeting.db')}"
+
 db.init_app(app)
 
 login_manager = LoginManager()
